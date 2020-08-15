@@ -51,8 +51,10 @@ namespace CS.Controllers {
 
         [HttpDelete]
         public void Delete([FromForm]int key) {
-            var employee = _data.Employees.First(a => a.ID == key);
-            _data.Employees.Remove(employee);
+            //var employee = _data.Employees.First(a => a.ID == key);
+            //_data.Employees.Remove(employee);
+            var entry = _data.Entry(new Employee { ID = key });
+            entry.State = EntityState.Deleted;
             _data.SaveChanges();
         }
     }
